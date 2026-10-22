@@ -1,0 +1,47 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "guvenlik-baslatici"
+version = "1.1.0"
+description = "Kurulu güvenlik araçlarını tek yerden listeleyen ve başlatan yerel başlatıcı."
+readme = "README.md"
+requires-python = ">=3.8"
+license = { text = "MIT" }
+authors = [{ name = "Ege Öğütücü" }]
+keywords = ["security", "launcher", "cli", "pentest-tools"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Environment :: Console",
+    "Topic :: Security",
+]
+dependencies = []
+
+[project.optional-dependencies]
+dev = [
+    "build>=1.0,<1.3; python_version < '3.9'",
+    "build>=1.0; python_version >= '3.9'",
+    "pytest>=7,<8.4; python_version < '3.9'",
+    "pytest>=7,<9; python_version >= '3.9'",
+    "ruff>=0.4,<0.10; python_version < '3.9'",
+    "ruff>=0.4; python_version >= '3.9'",
+]
+
+[project.scripts]
+guvenlik-baslatici = "guvenlik_baslatici.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py38"
+
+[tool.ruff.lint]
+select = ["E", "F", "I"]
